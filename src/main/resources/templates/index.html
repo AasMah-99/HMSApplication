@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/homeStyle.css"
+	th:href="@{/homeStyle.css}">
+<link rel="stylesheet" href="../static/swipe.css"
+	th:href="@{/swipe.css}">
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'
+	rel='stylesheet'>
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+.swiper-pagination {
+	top: 176%;
+}
+
+.swiper-button-next {
+	top: 140%
+}
+
+.swiper-button-prev {
+	top: 140%
+}
+</style>
+</head>
+<body>
+	<nav>
+		<div class="navbar">
+			<div class="logo">
+				<i
+					style="font-size: 28px; font-weight: 500; color: #fff; min-width: 60px; text-align: center;"
+					class='bx bx-plus-medical'></i><a href="#">HMS APPLICATION</a>
+			</div>
+			<ul class="nav-links">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Services</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+			<div class="button">
+				<a href="/login">Login/Signin <i class="fas fa-sign-in-alt"></i></a>
+			</div>
+		</div>
+	</nav>
+
+	<section class="home-content">
+		<div class="texts">
+			<h2 class="text">Hospital Management System</h2>
+			<h3 class="text">
+				Makes Appointment Booking <span>Easy...</span>
+			</h3>
+			<p>Lorem ipsum dolor sited and ametvel, nobised, minimali!
+				Quibusdam temporibus, placeate reessed veritatis optio aliquam illum
+				debitis at, perspiciatis consequatur iure vel, quae ratione.
+				Praesentium, at.</p>
+			<div class="button">
+				<a th:href="@{/patient/patientBookAppointment}">Book An
+					Appointment <i class="fas fa-location-arrow"></i>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="home-content">
+		<div class="texts">
+
+			<h3 class="text">
+				Our Experienced <span>Doctors</span>
+			</h3>
+		</div>
+		<div class="swiper mySwiper container">
+			<div class="swiper-wrapper content">
+
+				<div class="swiper-slide card" th:each="doc : ${doctors}">
+					<div class="card-content">
+						<div class="image">
+							<img
+								th:src="${'https://i2.wp.com/ui-avatars.com/api//'+doc.name+'/128?ssl=1
+							'}"
+								alt="">
+						</div>
+
+
+						<div class="name-profession">
+
+							<span th:text="${'Dr. '+doc.name}" class="name"></span> <span
+								th:text="${doc.specialization}" class="profession"></span>
+						</div>
+
+						<div class="rating">
+							Experience : &nbsp; <span th:text="${doc.experience}"
+								class="profession"></span>&nbsp;years
+						</div>
+						<div class="rating">
+							Fees : &#8377;&nbsp; <span th:text="${doc.fee}"
+								class="profession"></span>
+						</div>
+						<div class="button">
+							<button class="aboutMe">About</button>
+							<button class="hireMe">Appointment</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-pagination"></div>
+
+		<div class="button" style="margin-top: 150px; align-self: center;">
+			<a href="/login">Login as a Doctor <i
+				class="fas fa-location-arrow"></i></a>
+		</div>
+
+	</section>
+	</script>
+	<!-- Swiper JS -->
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+	<!-- Initialize Swiper -->
+	<script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+
+	<script>
+  // Js code to make color box enable or disable
+  let colorIcons = document.querySelector(".color-icon"),
+  icons = document.querySelector(".color-icon .icons");
+
+  icons.addEventListener("click" , ()=>{
+    colorIcons.classList.toggle("open");
+  })
+
+  // getting all .btn elements
+  let buttons = document.querySelectorAll(".btn");
+
+  for (var button of buttons) {
+    button.addEventListener("click", (e)=>{ //adding click event to each button
+      let target = e.target;
+
+      let open = document.querySelector(".open");
+      if(open) open.classList.remove("open");
+
+      document.querySelector(".active").classList.remove("active");
+      target.classList.add("active");
+
+      // js code to switch colors (also day night mode)
+      let root = document.querySelector(":root");
+      let dataColor = target.getAttribute("data-color"); //getting data-color values of clicked button
+      let color = dataColor.split(" "); //splitting each color from space and make them array
+
+      //passing particular value to a particular root variable
+      root.style.setProperty("--white", color[0]);
+      root.style.setProperty("--black", color[1]);
+      root.style.setProperty("--nav-main", color[2]);
+      root.style.setProperty("--switchers-main", color[3]);
+      root.style.setProperty("--light-bg", color[4]);
+
+      let iconName = target.className.split(" ")[2]; //getting the class name of icon
+
+      let coloText = document.querySelector(".home-content span");
+
+      if(target.classList.contains("fa-moon")){ //if icon name is moon
+        target.classList.replace(iconName, "fa-sun") //replace it with the sun
+        colorIcons.style.display = "none";
+        coloText.classList.add("darkMode");
+      }else if (target.classList.contains("fa-sun")) { //if icon name is sun
+        target.classList.replace("fa-sun", "fa-moon"); //replace it with the sun
+        colorIcons.style.display = "block";
+        coloText.classList.remove("darkMode");
+        document.querySelector(".btn.blue").click();
+      }
+    });
+  }
+ </script>
+</body>
+</html>

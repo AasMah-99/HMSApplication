@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Patient Appointment Booking | HMS App</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../static/patientDash.css"
+	th:href="@{/patientDash.css}">
+	<link rel="stylesheet" href="style2.css" th:href="@{/style2.css}">
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
+	rel='stylesheet'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="sidebar">
+		<div class="logo-details">
+			<i class='bx bx-plus-medical'></i> <span class="logo_name">HMS
+				App</span>
+		</div>
+		<ul class="nav-links">
+			<li><a th:href="@{/patient}"> <i class='bx bx-grid-alt'></i>
+					<span class="links_name">Dashboard</span>
+			</a></li>
+			<li><a th:href="@{/patient/patientBookAppointment}"> <i
+					class='bx bx-user'></i> <span class="links_name">Book
+						Appointment</span>
+			</a></li>
+			<li><a th:href="@{/patient/patientTotalAppointment}"> <i
+					class='bx bx-book-alt'></i> <span class="links_name">Total
+						Appointments</span>
+			</a></li>
+			<li><a th:href="@{/patient/patientReview}" class="active"> <i
+					class='bx bx-message'></i> <span class="links_name">Review</span>
+			</a></li>
+			<li class="log_out"><a onclick="logout()"> <i
+					class='bx bx-log-out'></i> <span class="links_name">Log out</span>
+			</a></li>
+		</ul>
+	</div>
+	<section class="home-section">
+		<nav>
+			<div id="sidebutton" class="sidebar-button">
+				<i class='bx bx-menu sidebarBtn'></i> <span class="dashboard">Review</span>
+			</div>
+			<div class="profile-details">
+				<img src="../images/profile.jpg" alt=""> <span
+					class="admin_name">Prem Shahi</span> <i class='bx bx-chevron-down'></i>
+			</div>
+		</nav>
+
+		<div id="appoBook" class="home-content">
+			<div class="patientAppo">
+				<div class="signup-form">
+					<form name="form2" action="javascript:void(0)"
+						onsubmit="onPatRegister()">
+						<h2>Review our Appointment System</h2>
+						<p>Please fill in this Review form to help us Improve our
+							System</p>
+						<hr>
+						<label style="color: black">Doctors's Name</label><br>
+						<div class="form-group">
+							<div>
+								<input type="text" class="form-control" id="docName" name="name"
+									placeholder="Name" required="required">
+								<div id="validationServer03Feedback" class="invalid-feedback">
+									Please provide a valid Name.</div>
+							</div>
+
+							<label style="color: black">Doctor's Specification</label><br>
+							<div class="form-group">
+								<select class="form-control" name="specialization"
+									id="docSpecialization">
+									<option value="Anesthesiologists">Anesthesiologists</option>
+									<option value="Cardiologists">Cardiologists</option>
+									<option value="Neurologists">Neurologists</option>
+									<option value="Radiologists">Radiologists</option>
+								</select>
+							</div>
+
+							<label style="color: black">Your Name</label><br>
+							<div class="form-group">
+								<input type="text" class="form-control" id="Name" name="Name"
+									placeholder="Name" required="required">
+								<div id="validationServer03Feedback" class="invalid-feedback">
+									Please provide a valid Name.</div>
+							</div>
+
+
+							<label style="color: black">Write Your Feedback...</label><br>
+							<div class="form-group">
+								<textarea class="form-control" id="patName" name="Review"
+									rows="4" cols="50" required="required">
+                        </textarea>
+							</div>
+
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-lg">Send</button>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../static/mainjs.js"
+		th:src="@{/mainjs.js}">
+		
+	</script>
+	<script>
+		let sidebar = document.querySelector(".sidebar");
+		let sidebarBtn = document.querySelector(".sidebarBtn");
+		sidebarBtn.onclick = function() {
+			sidebar.classList.toggle("active");
+			if (sidebar.classList.contains("active")) {
+				sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+			} else
+				sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+		}
+	</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous">
+		
+	</script>
+</body>
+
+</html>

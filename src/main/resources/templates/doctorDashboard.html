@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="UTF-8">
+<title>Doctor Home</title>
+
+<!--<link rel="stylesheet" href="../static/style.css"
+	th:href="@{/style.css}">-->
+<link rel="stylesheet" href="../static/style2.css"
+	th:href="@{/style2.css}">
+
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'
+	rel='stylesheet'>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+<script src="https://kit.fontawesome.com/c92909f8b0.js"
+	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/b496fc4e58.js"
+	crossorigin="anonymous"></script>
+
+<style>
+.home-content .overview-boxes {
+	justify-content: flex-start;
+	gap: 24px;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="sidebar">
+		<div class="logo-details">
+			<i class='bx bx-plus-medical'></i> <span class="logo_name">HMS
+				APP</span>
+		</div>
+		<ul class="nav-links">
+			<li><a th:href="@{/doctor}" class="active"> <i
+					class='bx bx-grid-alt'></i> <span class="links_name">Dashboard</span>
+			</a></li>
+			<li><a th:href="@{/doctor/doctorAppointmentList}"> <i
+					class='bx bx-list-ul'></i>Appointment List <span class="links_name"></span>
+			</a></li>
+			<li><a th:href="@{/doctor/doctorPatientList}"> <i
+					class='bx bx-coin-stack'></i>Patient List <span class="links_name"></span>
+			</a></li>
+			<li><a th:href="@{/doctor/doctorProfile}"> <i
+					class='bx bx-box'></i>Profile <span class="links_name"></span>
+			</a></li>
+			<li class="log_out"><a onclick="logout()"> <i
+					class='bx bx-log-out'></i> <span class="links_name">Log out</span>
+			</a></li>
+		</ul>
+	</div>
+	<section class="home-section">
+		<nav>
+			<div class="sidebar-button">
+				<i class='bx bx-menu sidebarBtn'></i> <span class="dashboard">Dashboard</span>
+			</div>
+
+			<div class="profile-details">
+				<img src="/images/profile.jpg" alt=""> <span
+					class="admin_name">Dr Gulati</span> <i></i>
+			</div>
+		</nav>
+
+		<div class="home-content">
+			<div class="overview-boxes">
+				<div class="box">
+					<div class="right-side">
+						<div class="box-topic">Total Appointments</div>
+						<div id="docTotalApp" class="number"></div>
+
+
+					</div>
+
+				</div>
+				<div class="box">
+					<div class="right-side">
+						<div class="box-topic">Appointments Scheduled</div>
+						<div id="docTotalScheduled">38</div>
+
+					</div>
+
+
+
+				</div>
+
+
+
+			</div>
+
+			<div class="sales-boxes">
+				<div class="recent-sales box">
+					<div class="title">Patient List</div>
+					<div class="sales-details">
+						<ul class="details">
+							<li class="topic">Name</li>
+							<li><a href="#">Mrs.Verma</a></li>
+							<li><a href="#">Mr.Gupta</a></li>
+							<li><a href="#">Mr.Rawat</a></li>
+							<li><a href="#">Mrs.Shukla</a></li>
+							<li><a href="#">Mr.Singh</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../static/mainjs.js"
+		th:src="@{/mainjs.js}">
+		
+	</script>
+	<script type="text/javascript" src="../static/docDash.js"
+		th:src="@{/docDash.js}"></script>
+	<script>
+		let sidebar = document.querySelector(".sidebar");
+		let sidebarBtn = document.querySelector(".sidebarBtn");
+		sidebarBtn.onclick = function() {
+			sidebar.classList.toggle("active");
+			if (sidebar.classList.contains("active")) {
+				sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+			} else
+				sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+		}
+	</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+		integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

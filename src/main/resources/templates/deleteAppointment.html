@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="UTF-8">
+<title>Delete Appointment</title>
+<link rel="stylesheet" href="../static/patientDash.css"
+	th:href="@{/patientDash.css}">
+	<link rel="stylesheet" href="style2.css" th:href="@{/style2.css}">
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
+	rel='stylesheet'>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="sidebar">
+		<div class="logo-details">
+			<i class='bx bx-plus-medical'></i> <span class="logo_name">HMS
+				App</span>
+		</div>
+		<ul class="nav-links">
+			<li><a th:href="@{/receptionist}"> <i class='bx bx-grid-alt'></i>
+					<span class="links_name">Dashboard</span>
+			</a></li>
+			<li><a th:href="@{/receptionist/deleteAppointment}"
+				class="active"> <i class='bx bx-box'></i> <span
+					class="links_name">Delete </span>
+			</a></li>
+			<li><a th:href="@{/receptionist/updateAppointment}"> <i
+					class='bx bx-list-ul'></i> <span class="links_name">Reschedule
+				</span>
+			</a></li>
+			<li><a th:href="@{/receptionist/receptionistPrintReceipt}">
+					<i class='bx bx-pie-chart-alt-2'></i> <span class="links_name">
+						Print Receipt</span>
+			</a></li>
+			<li><a th:href="@{/receptionist/updateSpecialization}"> <i
+					class='bx bx-coin-stack'></i> <span class="links_name">Specialization</span>
+			</a></li>
+			<li><a th:href="@{/receptionist/patientPrescription}"> <i
+					class='bx bx-book-alt'></i> <span class="links_name">Prescriptions</span>
+			</a></li>
+			<li><a th:href="@{/receptionist/appointmentPerDoctor}"> <i
+					class='bx bx-cog'></i> <span class="links_name">AppointmentperDoctor</span>
+			</a></li>
+			<li class="log_out"><a onclick="logout()"> <i
+					class='bx bx-log-out'></i> <span class="links_name">Log out</span>
+			</a></li>
+		</ul>
+	</div>
+	<section class="home-section">
+		<nav>
+			<div class="sidebar-button">
+				<i class='bx bx-menu sidebarBtn'></i> <span class="dashboard">Delete
+					Appointment</span>
+			</div>
+			<div class="profile-details">
+				<img src="../images/profile.jpg" alt=""> <span
+					class="admin_name">Receptionist</span> <i
+					class='bx bx-chevron-down'></i>
+			</div>
+		</nav>
+
+		<div class="home-content">
+
+			<div class="container sales-boxes" style="max-width: 600px">
+				<div class="col ">
+					<div class="signup-form">
+						<form name="form2" action="javascript:void(0)"
+							onsubmit="onDeleteAppointment()">
+							<h2>Delete Appointment</h2>
+							<p>Please fill in this form to Delete an appointment!</p>
+							<hr>
+
+							<label style="color: black;">Appointment Id</label><br>
+							<div class="form-group">
+								<div class="form-group">
+									<div class="form-group">
+										<select required="required" class="form-control" name="appId"
+											id="appId">
+											<option value="">Select Appointment Id</option>
+											<option th:each="a : ${appointments}"
+												th:value="${a.appointmentId}" th:text="${a.appointmentId}"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<label style="color: black;">Patient's Name</label><br>
+							<div class="form-group">
+								<div>
+									<input type="text" class="form-control" id="patName"
+										name="name" placeholder="Name" required="required">
+									<div id="validationServer03Feedback" class="invalid-feedback">
+										Please provide a valid Name.</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-lg">Delete
+									Appointment</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../static/mainjs.js"
+		th:src="@{/mainjs.js}">
+		
+	</script>
+	<script>
+		let sidebar = document.querySelector(".sidebar");
+		let sidebarBtn = document.querySelector(".sidebarBtn");
+		sidebarBtn.onclick = function() {
+			sidebar.classList.toggle("active");
+			if (sidebar.classList.contains("active")) {
+				sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+			} else
+				sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+		}
+	</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
